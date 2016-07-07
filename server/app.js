@@ -35,12 +35,14 @@ io.on('connection', socket=>{
   });
 
   socket.on('Send Message', ({message})=>{
-    io.emit('Receive Message', {username, message});
+    chats.push({username: chatter, message});
+    io.emit('Receive Message', {username: chatter, message});
   });
 
   socket.on('Add User', ({username})=>{
     chatter = username;
     users.push(username);
+    chats.push({username, message: 'Entered Room'});
     socket.emit('Receive User', username);
   });
 

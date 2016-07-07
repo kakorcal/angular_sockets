@@ -1,4 +1,5 @@
 (()=>{
+  // adding scroll glue directive
   angular.module('chat.component', ['luegg.directives'])
     .controller('ChatController', ChatController);
 
@@ -39,8 +40,8 @@
       vm.users = users;
     });
 
-    Socket.on('Receive Message', ({message})=>{
-      
+    Socket.on('Receive Message', data=>{
+      vm.chats.push(data);
     });
     
     Socket.on('Receive User', (user)=>{
@@ -59,6 +60,7 @@
     // TODO: Refactor to not use $scope
     // when user leaves, disconnect sockets
     $scope.$on('$locationChangeStart', e=>{
+      
       Socket.disconnect(true);
     });
   }
