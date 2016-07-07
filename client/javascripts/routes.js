@@ -2,6 +2,7 @@
   angular.module('chat.routes', ['ngRoute']).config(Routes);
 
   function Routes($routeProvider, $locationProvider){
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/pages/home.html'
@@ -14,7 +15,8 @@
       .otherwise({
         redirectTo: '/'
       });
-      $locationProvider.html5Mode(true);
+
+    $locationProvider.html5Mode(true);
   }
 
   Routes.$inject = ['$routeProvider', '$locationProvider'];

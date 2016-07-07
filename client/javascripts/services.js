@@ -1,11 +1,11 @@
 (()=>{
-  angular.module('chat.services', [])
-    .service('ChatService', ChatService);
+  angular.module('socket.services', [])
+    .service('Socket', Socket);
 
-  function ChatService(socketFactory){
+  function Socket(socketFactory){
     return socketFactory();
   }
   
   // from btford.socket-io
-  ChatService.$inject = ['socketFactory'];
+  Socket.$inject = ['socketFactory'];
 })();

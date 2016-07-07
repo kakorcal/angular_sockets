@@ -4,7 +4,7 @@
     'ngAnimate',
     'btford.socket-io',
     'chat.routes',
-    'chat.services',
+    'socket.services',
     'chat.component'
   ]);
 })();

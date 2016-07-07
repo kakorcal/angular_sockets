@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const chats = require('./chats').chats;
 const PORT = process.env.PORT || 3000;
 
 app.use(require('morgan')('dev'));
@@ -22,6 +23,9 @@ server.listen(PORT, ()=>{
 
 io.on('connection', socket=>{
   console.log('HANDSHAKE SUCCESS');
+  socket.on('request-users', ()=>{
+    socket.emit('users', {chats});
+  });
 
   socket.on('disconnect', ()=>{
     console.log('CLIENT DISCONNECT');

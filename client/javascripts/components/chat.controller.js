@@ -2,49 +2,25 @@
   angular.module('chat.component', [])
     .controller('ChatController', ChatController);
 
-  function ChatController($scope, ChatService){
+  function ChatController($scope, Socket){
     let vm = this;
 
-    vm.chats = [
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'},
-      {user: 'Ken', text: 'Hello'},
-      {user: 'Foo', text: 'Bar baz'},
-      {user: 'Test', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aspernatur, blanditiis laboriosam, animi necessitatibus sapiente.'}
-    ];
-
     // when user goes on chat.html, open sockets
-    ChatService.connect();
+    Socket.connect();
 
-    // 
+    // get all chats
+    Socket.emit('request-users');
 
+    // set users chats
+    Socket.on('users', ({chats})=>{
+      vm.chats = chats;
+    });
+    
     // when user leaves, disconnect sockets
     $scope.$on('$locationChangeStart', e=>{
-      ChatService.disconnect(true);
+      Socket.disconnect(true);
     });
   }
 
-  ChatController.$inject = ['$scope', 'ChatService'];
+  ChatController.$inject = ['$scope', 'Socket'];
 })();

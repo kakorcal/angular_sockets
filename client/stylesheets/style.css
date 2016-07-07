@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+md-list-item.md-2-line > .md-no-style .md-list-item-text.chat-text {
+  margin: 20px 0;
+}
+
 .chat-wrap, .chat-input {
   width: 100%;
 }
