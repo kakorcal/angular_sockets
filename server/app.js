@@ -3,8 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const chats = require('./chats').chats;
 const PORT = process.env.PORT || 3000;
+const users = [];
+const chats = require('./chats').chats;
 
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,10 +24,27 @@ server.listen(PORT, ()=>{
 
 io.on('connection', socket=>{
   console.log('HANDSHAKE SUCCESS');
-  socket.on('request-users', ()=>{
-    socket.emit('users', {chats});
+  var chatter = '';
+
+  socket.on('Request Dummy Data', ()=>{
+    socket.emit('Receive Dummy Data', {chats});
   });
 
+  socket.on('Request Users', ()=>{
+    socket.emit('Receive Users', {users});
+  });
+
+  socket.on('Send Message', ({message})=>{
+    io.emit('Receive Message', {username, message});
+  });
+
+  socket.on('Add User', ({username})=>{
+    chatter = username;
+    users.push(username);
+    socket.emit('Receive User', username);
+  });
+
+  // remove user
   socket.on('disconnect', ()=>{
     console.log('CLIENT DISCONNECT');
   });
