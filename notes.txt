@@ -1,0 +1,19 @@
+<div layout="column" flex='2'></div>
+<div layout='column' flex='95'>
+  <div layout="row" flex='5'></div>
+  <div layout="row" flex='90' class='chat-wrap'>
+    <div layout='column'>
+      <md-toolbar flex>
+        <div class='md-toolbar-tools'>
+          <h3>Welcome To The Chat Room</h3>
+        </div>
+      </md-toolbar>
+    </div>
+    <div layout='column'>
+      <md-content>
+      </md-content>
+    </div>
+  </div>
+  <div layout="row" flex='5'></div>  
+</div>
+<div layout="column" flex='2'></div>

@@ -2,3 +2,20 @@
   font-size: 60px;
   padding: 90px;
 }
+
+.chat-wrap {
+  overflow: scroll;
+}
+
+.chat-wrap md-list {
+  padding: 0;
+}
+
+.chat-wrap, .chat-input {
+  width: 100%;
+}
+
+.chat-input {
+  margin-top: 25px;
+  margin-bottom: 0;
+}

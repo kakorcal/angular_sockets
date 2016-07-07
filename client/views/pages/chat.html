@@ -1,3 +1,34 @@
-<md-content layout-padding>
-  <h1>Welcome to the chat room</h1>
-</md-content>
+<div flex layout='column' layout-padding layout-align='center center'>
+  <div class='md-whiteframe-3dp chat-wrap'>
+    <md-toolbar md-ink-ripple='#fff' layout="row" class="md-accent md-hue-2">
+      <div class="md-toolbar-tools">
+        <span flex>WELCOME TO THE CHAT ROOM</span>
+      </div>
+    </md-toolbar>
+  </div>
+  <div flex class="md-whiteframe-3dp chat-wrap">
+    <md-content>
+      <md-list>
+        <md-list-item class="md-2-line" ng-repeat="chat in vm.chats" ng-click="null">
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ chat.user }}</h3>
+            <p>{{ chat.text }}</p>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+  <div class='md-whiteframe-3dp chat-wrap'>
+    <form layout='row' layout-align='center center'>
+      <div flex>
+        <md-input-container class='chat-input'>
+          <input autofocus ng-model="vm.text" placeholder='Enter Text Here...'>
+        </md-input-container>        
+      </div>
+      <div>
+        <md-button class='md-raised'>SEND</md-button>      
+      </div>
+    </form>
+  </div>
+</div>
