@@ -1,12 +1,12 @@
 <div flex layout='column' layout-padding layout-align='center center'>
-  <div class='md-whiteframe-3dp chat-wrap'>
+  <div class='chat-wrap'>
     <md-toolbar md-ink-ripple='#fff' layout="row" class="md-accent md-hue-2">
       <div class="md-toolbar-tools">
         <span flex>WELCOME TO THE CHAT ROOM</span>
       </div>
     </md-toolbar>
   </div>
-  <div flex class="md-whiteframe-3dp chat-wrap">
+  <div flex class="chat-wrap">
     <md-content>
       <md-list>
         <md-list-item class="md-2-line" ng-repeat="chat in vm.chats" ng-click="null">
@@ -19,7 +19,7 @@
       </md-list>
     </md-content>
   </div>
-  <div class='md-whiteframe-3dp chat-wrap'>
+  <div class='chat-wrap'>
     <form layout='row' layout-align='center center'>
       <div flex>
         <md-input-container class='chat-input'>
