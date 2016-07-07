@@ -1,4 +1,6 @@
 (()=>{
+  // TODO: The first person who joins the chat is unable to see if users left or joined
+
   // adding scroll glue directive
   angular.module('chat.component', ['luegg.directives'])
     .controller('ChatController', ChatController);
@@ -44,12 +46,12 @@
       vm.chats.push(data);
     });
     
-    Socket.on('Receive User', (user)=>{
+    Socket.on('Receive User', user=>{
       vm.users.push(user);
       vm.chats.push({username: user, message: 'Entered Room'});
     });
 
-    Socket.on('Remove User', ({user})=>{
+    Socket.on('Remove User', user=>{
       vm.users.splice(vm.users.indexOf(user), 1);
       vm.messages.push({username: user, message: 'Left Room'});
     });
@@ -60,7 +62,6 @@
     // TODO: Refactor to not use $scope
     // when user leaves, disconnect sockets
     $scope.$on('$locationChangeStart', e=>{
-      
       Socket.disconnect(true);
     });
   }

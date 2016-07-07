@@ -48,6 +48,9 @@ io.on('connection', socket=>{
 
   // remove user
   socket.on('disconnect', ()=>{
-    console.log('CLIENT DISCONNECT');
+    console.log('CLIENT DISCONNECT'); 
+    users.splice(users.indexOf(chatter), 1);
+    chats.push({username: chatter, message: 'Left Room'});
+    socket.emit('Remove User', chatter);
   });
 });
