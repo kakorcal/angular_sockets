@@ -13,7 +13,8 @@
       })
       .otherwise({
         redirectTo: '/'
-      })
+      });
+      $locationProvider.html5Mode(true);
   }
 
   Routes.$inject = ['$routeProvider', '$locationProvider'];

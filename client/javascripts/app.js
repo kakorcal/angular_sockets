@@ -3,6 +3,8 @@
     'ngMaterial',
     'ngAnimate',
     'btford.socket-io',
-    'chat.routes'
+    'chat.routes',
+    'chat.services',
+    'chat.component'
   ]);
 })();

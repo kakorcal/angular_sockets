@@ -1,5 +1,5 @@
 (()=>{
-  angular.module('chat.service', [])
+  angular.module('chat.services', [])
     .service('ChatService', ChatService);
 
   function ChatService(socketFactory){
