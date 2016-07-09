@@ -1,3 +1,7 @@
+.ng-cloak {
+  display: none !important;
+}
+
 .enter-chat {
   font-size: 60px;
   padding: 90px;
